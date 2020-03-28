@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+	<script src="vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin: 0;padding-top: 8.5px; color: white;" :style="{width:playerHealth + '%'}">
+                        {{ playerHealth }}
+                </div>
+                <!-- If you want to cheat, remove the uncomment the code below :-)  -->
+                <!-- <input type="text" placeholder="Change your capacity" style="text-align: center;margin-top: 7px;margin-left: 30%;border-radius: 5px;" v-model="playerHealth"> -->
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin: 0;padding-top: 8.5px; color: white;" :style="{width:monsterHealth + '%'}">
+                        {{ monsterHealth }}
+                </div>
+                <!-- If you want to cheat, remove the uncomment the code below :-)  -->
+                <!-- <input type="text" placeholder="Change your capacity" style="text-align: center;margin-top: 7px;margin-left: 30%;border-radius: 5px;" v-model="monsterHealth"> -->
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameIsRunning" style="margin-top: 39px;">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+    </section>
+    <section class="row controls" v-else style="margin-top: 39px;">
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="giveUp">GIVE UP</button>
+        </div>
+    </section>
+    <section class="row log" v-if="turns.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="turn in turns" style="color: white;">
+                    {{ turn.text }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
